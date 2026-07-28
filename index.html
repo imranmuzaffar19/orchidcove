@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Orchids Cove — Boutique Luxury in Srinagar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F2A22;
+            --ink-soft: #1E4638;
+            --ivory: #F6F1E7;
+            --paper: #FBF8F2;
+            --brass: #B8892B;
+            --brass-light: #D9B463;
+            --line: rgba(15,42,34,0.12);
+            --shadow: 0 30px 60px -20px rgba(15,42,34,0.2);
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0; background: var(--paper); color: var(--ink);
+            font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 400; margin: 0; line-height: 1.1; }
+        .eyebrow { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+        
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- Global Transitions --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(251, 248, 242, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--line);
+        }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px; max-width: 1400px; margin: 0 auto;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; font-family: 'Fraunces', serif; font-size: 1.3rem; }
+        .brand span { color: var(--brass); }
+        
+        nav.desktop-links { display: flex; gap: 35px; align-items: center; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; }
+        nav.desktop-links a { transition: color 0.3s; }
+        nav.desktop-links a:hover { color: var(--brass); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 32px; border-radius: 2px; font-size: 0.75rem;
+            letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
+            transition: all 0.4s var(--ease); border: 1px solid transparent;
+            font-weight: 600;
+        }
+        .btn-primary { background: var(--ink); color: var(--ivory); }
+        .btn-primary:hover { background: var(--brass); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-outline { border-color: var(--ink); color: var(--ink); }
+        .btn-outline:hover { background: var(--ink); color: var(--ivory); }
+
+        /* --- Hero --- */
+        .hero { padding: 180px 0 100px; min-height: 90vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); margin: 20px 0 30px; }
+        .hero h1 em { font-style: italic; color: var(--brass); font-weight: 300; }
+        .hero-img { 
+            border-radius: 400px 400px 20px 20px; aspect-ratio: 4/5; 
+            object-fit: cover; box-shadow: var(--shadow);
+            width: 100%;
+        }
+
+        /* --- About --- */
+        .about-section { background: var(--ivory); padding: 120px 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: center; }
+        .about-content h2 { font-size: 3rem; margin-bottom: 30px; }
+        .about-content p { font-size: 1.1rem; line-height: 1.8; color: #4a5451; margin-bottom: 25px; }
+
+        /* --- Rooms & Facilities Grid --- */
+        section { padding: 120px 0; }
+        .section-head { text-align: center; max-width: 600px; margin: 0 auto 80px; }
+        .section-head h2 { font-size: 3rem; margin-top: 10px; }
+
+        .room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .room-card { background: white; border-radius: 4px; overflow: hidden; transition: var(--ease); border: 1px solid var(--line); }
+        .room-card:hover { transform: translateY(-12px); box-shadow: var(--shadow); }
+        .room-image { height: 350px; overflow: hidden; }
+        .room-image img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--ease); }
+        .room-card:hover .room-image img { transform: scale(1.1); }
+        .room-meta { padding: 35px; text-align: center; }
+
+        .fac-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); border: 1px solid var(--line); }
+        .fac-item { padding: 50px; text-align: center; border: 0.5px solid var(--line); transition: background 0.4s; }
+        .fac-item:hover { background: #fdfdfd; }
+        .fac-item svg { width: 40px; height: 40px; stroke: var(--brass); margin-bottom: 20px; stroke-width: 1.2; fill: none; }
+
+        /* --- ATTRACTIVE RESERVATION MODAL --- */
+        .modal { 
+            position: fixed; inset: 0; background: rgba(15,42,34,0.6); 
+            backdrop-filter: blur(10px); display: none; z-index: 2000; 
+            place-items: center; padding: 20px;
+        }
+        .modal.active { display: grid; }
+        .modal-container { 
+            background: var(--paper); width: 100%; max-width: 900px; 
+            display: grid; grid-template-columns: 0.8fr 1.2fr;
+            border-radius: 4px; overflow: hidden; position: relative;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+            animation: modalPop 0.6s var(--ease);
+        }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.95) translateY(30px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        
+        .modal-side { background: var(--ink); color: white; padding: 60px; display: flex; flex-direction: column; justify-content: space-between; }
+        .modal-form { padding: 60px; background: white; }
+        .close-modal { position: absolute; top: 25px; right: 25px; cursor: pointer; font-size: 1.5rem; color: #999; z-index: 10; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.65rem; font-family: 'Space Mono'; text-transform: uppercase; margin-bottom: 8px; color: var(--brass); }
+        .form-group input, .form-group select { 
+            width: 100%; padding: 15px 0; border: none; border-bottom: 1px solid var(--line);
+            font-family: 'Inter'; font-size: 1rem; transition: border-color 0.3s;
+        }
+        .form-group input:focus { border-color: var(--brass); }
+
+        #successContent { display: none; text-align: center; padding: 40px; }
+
+        /* --- Responsive --- */
+        @media (max-width: 1000px) {
+            .hero-grid, .about-grid, .room-grid, .modal-container { grid-template-columns: 1fr; }
+            .modal-side { display: none; }
+            .wrap { padding: 0 25px; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="#" class="brand">THE ORCHIDS <span>COVE</span></a>
+        <nav class="desktop-links">
+            <a href="#home">Home</a>
+            <a href="#about">The Story</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#facilities">Amenities</a>
+            <button class="btn btn-primary" style="padding: 10px 20px;" onclick="openModal()">Book A Room</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow reveal">Srinagar, Kashmir</span>
+                <h1 class="reveal">Where the <em>Mountains</em> Meet the Water</h1>
+                <p class="reveal" style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">A boutique sanctuary in Nishat, offering panoramic views of the Zabarwan range and the soul-stirring quiet of the Dal Lake valley.</p>
+                <div class="reveal" style="display:flex; gap:20px;">
+                    <button class="btn btn-primary" onclick="openModal()">Check Availability</button>
+                    <a href="#rooms" class="btn btn-outline">Explore Rooms</a>
+                </div>
+            </div>
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000" alt="View" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+        <div class="wrap about-grid">
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&q=80&w=800" alt="Hotel Interior" style="width:100%; border-radius:4px; box-shadow: var(--shadow);">
+            </div>
+            <div class="about-content reveal">
+                <span class="eyebrow">Our Philosophy</span>
+                <h2>Quiet Luxury, Timeless Hospitality</h2>
+                <p>Located just minutes from the majestic Nishat Bagh, The Orchids Cove is more than a hotel. It is a curated experience of Kashmiri culture, modern comfort, and environmental harmony.</p>
+                <p>Whether you are here to witness the sunrise over the lake or to seek inspiration from the snow-capped peaks, our cove provides the perfect backdrop for reflection and rejuvenation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms -->
+    <section id="rooms">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Guest Suites</span>
+                <h2>Rest in Elegance</h2>
+            </div>
+            <div class="room-grid" id="roomGrid">
+                <!-- Rooms Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section id="facilities" style="background: white;">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Services</span>
+                <h2>Crafted for Comfort</h2>
+            </div>
+            <div class="fac-grid" id="facGrid">
+                <!-- Facilities Injected via JS -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Reservation Modal -->
+<div class="modal" id="bookModal">
+    <div class="modal-container">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-side">
+            <div>
+                <h3 style="font-size: 2rem; margin-bottom: 20px;">Begin Your Journey</h3>
+                <p style="opacity: 0.7; line-height: 1.6;">Submit your preferred dates, and our concierge will contact you within 2 hours to finalize your stay at The Orchids Cove.</p>
+            </div>
+            <div style="font-size: 0.8rem; font-family: 'Space Mono'; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+                BEST PRICE GUARANTEE<br>SECURE RESERVATION
+            </div>
+        </div>
+        <div class="modal-form">
+            <div id="formContent">
+                <form id="resForm">
+                    <div class="form-group">
+                        <label>Choose Room</label>
+                        <select id="roomType" required>
+                            <option value="Deluxe Room">Deluxe Room</option>
+                            <option value="Family Suite">Family Suite</option>
+                            <option value="Royal Suite">Royal Suite</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                        <div class="form-group">
+                            <label>Arrival</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Departure</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="hello@example.com" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 20px;">Send Inquiry</button>
+                </form>
+            </div>
+            <div id="successContent">
+                <div style="color: var(--brass); font-size: 3rem; margin-bottom: 20px;">✓</div>
+                <h3 style="margin-bottom: 10px;">Request Received</h3>
+                <p style="opacity: 0.7;">We have sent a confirmation email to your inbox. Our team will reach out shortly.</p>
+                <button class="btn btn-outline" style="margin-top: 30px;" onclick="closeModal()">Close Window</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer style="background: var(--ink); color: var(--ivory); padding: 100px 0 50px;">
+    <div class="wrap" style="text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">The Orchids Cove</h2>
+        <p style="opacity: 0.6; margin-bottom: 40px;">Brein, Nishat, Srinagar, Jammu and Kashmir 191121</p>
+        <div style="display:flex; justify-content:center; gap:30px; font-family: 'Space Mono'; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">FACEBOOK</a>
+            <a href="#">CONTACT</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Content Data
+    const ROOMS = [
+        { name: 'Deluxe Room', price: '₹3,500', img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=600' },
+        { name: 'Family Suite', price: '₹5,200', img: 'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&q=80&w=600' },
+        { name: 'Royal Suite', price: '₹7,500', img: 'https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&q=80&w=600' }
+    ];
+
+    const FAC = [
+        { name: 'Wifi Connectivity', icon: '<path d="M5 13a11 11 0 0114 0M8.5 16.5a6 6 0 017 0M12 20h.01"/>' },
+        { name: 'Authentic Kitchen', icon: '<path d="M12 2v2M7 4L6 2M17 4l1-2M5 8h14l-2 12H7L5 8z"/>' },
+        { name: 'Secure Parking', icon: '<rect x="1" y="13" width="22" height="8" rx="2"/><path d="M7 13l3-8h4l3 8"/>' },
+        { name: 'Mountain Views', icon: '<path d="m8 3 4 8 5-5 5 15H2L8 3z"/>' }
+    ];
+
+    // Initialization
+    window.onload = () => {
+        // Populate Rooms
+        document.getElementById('roomGrid').innerHTML = ROOMS.map(r => `
+            <div class="room-card reveal">
+                <div class="room-image"><img src="${r.img}" alt="${r.name}"></div>
+                <div class="room-meta">
+                    <span class="eyebrow" style="margin-bottom:5px">Starting From</span>
+                    <h3>${r.name}</h3>
+                    <p style="color:var(--brass); font-family:'Space Mono'; margin:15px 0;">${r.price} / Night</p>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('${r.name}')">Select Room</button>
+                </div>
+            </div>
+        `).join('');
+
+        // Populate Facilities
+        document.getElementById('facGrid').innerHTML = FAC.map(f => `
+            <div class="fac-item reveal">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${f.icon}</svg>
+                <h4 style="font-family:'Space Mono'; font-size:0.8rem; text-transform:uppercase;">${f.name}</h4>
+            </div>
+        `).join('');
+
+        initScrollReveal();
+    };
+
+    // Scroll Reveal Logic
+    function initScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Slight delay for staggered effect
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 100); 
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // Modal Controls
+    const modal = document.getElementById('bookModal');
+    function openModal(type = '') {
+        modal.classList.add('active');
+        if(type) document.getElementById('roomType').value = type;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        // Reset form view
+        setTimeout(() => {
+            document.getElementById('formContent').style.display = 'block';
+            document.getElementById('successContent').style.display = 'none';
+        }, 500);
+    }
+
+    // Form Submit
+    document.getElementById('resForm').onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successContent').style.display = 'block';
+    };
+</script>
+
+</body>
+</html>
