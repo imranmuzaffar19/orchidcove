@@ -1159,9 +1159,13 @@ Object.assign(window, {
     handleAdminLogout
 });
 
-// Initialize application after all data and functions are defined & bound
-if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', initApp);
-} else {
+// Initialize application immediately and on DOM load
+try {
     initApp();
+} catch (e) {
+    console.error("InitApp execution error:", e);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
 }
