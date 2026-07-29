@@ -67,6 +67,21 @@
             </div>
             <span class="close-modal" style="position:static;" onclick="closeMenu()">&times;</span>
         </div>
+
+        <!-- Mobile Controls Strip (Currency & Theme) -->
+        <div style="display:flex; gap:10px; align-items:center; background:var(--bg-ivory); padding:8px 12px; border-radius:var(--radius); border:1px solid var(--line); margin-bottom:6px;">
+            <select class="select-currency" style="flex-grow:1;" onchange="changeCurrency(this.value); closeMenu();">
+                <option value="INR">₹ INR (Rupees)</option>
+                <option value="USD">$ USD (Dollars)</option>
+                <option value="EUR">€ EUR (Euros)</option>
+                <option value="GBP">£ GBP (Pounds)</option>
+                <option value="AED">د.إ AED (Dirhams)</option>
+            </select>
+            <button class="btn btn-outline btn-sm" onclick="toggleTheme(); closeMenu();" style="border-radius:20px; font-size:0.75rem; white-space:nowrap; padding:6px 12px;">
+                🌗 Theme
+            </button>
+        </div>
+
         <a href="#home" onclick="closeMenu()"><span>🏠</span> Home & Overview</a>
         <a href="#about" onclick="closeMenu()"><span>🏰</span> Heritage & Story</a>
         <a href="#rooms" onclick="closeMenu()"><span>🏨</span> Suites & Luxury Villas</a>

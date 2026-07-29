@@ -513,42 +513,50 @@ section { padding: 90px 0; position: relative; z-index: 1; }
 }
 
 @media (max-width: 768px) {
-    section { padding: 50px 0; }
+    section { padding: 45px 0; }
     .nav-container { padding: 12px 16px; }
     .brand { font-size: 1.15rem; gap: 6px; }
-    .room-grid, .exp-grid, .reviews-grid, .gallery-grid, .fac-grid { grid-template-columns: 1fr; gap: 20px; }
+    .room-grid, .exp-grid, .reviews-grid, .dining-grid { grid-template-columns: 1fr; gap: 20px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery-item { height: 160px; }
+    .fac-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .fac-item { padding: 20px 12px; }
     .reviews-summary { flex-direction: column; text-align: center; padding: 20px; }
     .quick-booking-bar { grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
     .quick-booking-bar button { grid-column: span 2; }
-    .modal-container { padding: 18px !important; width: 95vw !important; }
+    .modal-container { padding: 18px !important; width: 95vw !important; max-height: 90vh; }
     .filter-bar { flex-direction: column; align-items: stretch; gap: 12px; }
     .search-sort { width: 100%; justify-content: space-between; }
     .search-input { flex-grow: 1; width: 100%; }
 }
 
 @media (max-width: 480px) {
-    section { padding: 40px 0; }
-    .hero { padding: 40px 0 50px; min-height: auto; }
-    .hero h1 { font-size: 2.1rem; margin: 10px 0 15px; }
-    .hero p { font-size: 0.95rem; margin-bottom: 20px; }
+    section { padding: 35px 0; }
+    .hero { padding: 35px 0 45px; min-height: auto; }
+    .hero h1 { font-size: 2.0rem; margin: 10px 0 15px; line-height: 1.2; }
+    .hero p { font-size: 0.92rem; margin-bottom: 20px; line-height: 1.5; }
     .nav-container { padding: 10px 12px; }
-    .brand { font-size: 1rem; gap: 4px; }
+    .brand { font-size: 0.98rem; gap: 4px; }
     .brand-icon { width: 18px; height: 18px; }
-    .quick-booking-bar { grid-template-columns: 1fr; }
-    .quick-booking-bar button { grid-column: span 1; }
+    .quick-booking-bar { grid-template-columns: 1fr; gap: 10px; }
+    .quick-booking-bar button { grid-column: span 1; padding: 12px; }
     .wrap { padding: 0 14px; }
-    .room-content { padding: 18px; }
-    .room-actions { flex-direction: column; }
+    .room-content { padding: 16px; }
+    .room-actions { flex-direction: column; gap: 8px; }
+    .room-actions button { width: 100%; }
     .filter-tab { padding: 6px 12px; font-size: 0.75rem; }
     .header-actions { gap: 4px; }
-    .icon-btn { width: 32px; height: 32px; padding: 0; }
-    .select-currency { font-size: 0.72rem; padding: 4px 6px; }
+    .header-actions .select-currency, 
+    .header-actions .icon-btn:not(#menuBtn) { display: none; }
+    .icon-btn { width: 34px; height: 34px; padding: 0; }
     .toast { font-size: 0.78rem; padding: 10px 14px; }
     #toastContainer { left: 15px; bottom: 15px; }
     .floating-contact-dock { bottom: 15px; right: 15px; gap: 8px; }
-    .float-btn { width: 40px; height: 40px; }
-    .hero-floating-badge { padding: 8px 12px; bottom: 12px; left: 12px; }
+    .float-btn { width: 42px; height: 42px; }
+    .hero-floating-badge { padding: 8px 12px; bottom: 10px; left: 10px; font-size: 0.75rem; }
     .hero-badge-number { font-size: 1.3rem; }
+    .fac-grid { grid-template-columns: 1fr; }
+    .admin-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
 /* Print Styles for Voucher */
