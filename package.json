@@ -1,0 +1,24 @@
+{
+  "name": "orchidcove",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Orchids Cove — Boutique Luxury Retreat Web Application in Srinagar, Kashmir (Vite Powered)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "vite",
+    "boutique-hotel",
+    "kashmir",
+    "srinagar",
+    "luxury-resort"
+  ],
+  "author": "The Orchids Cove",
+  "license": "MIT"
+}
