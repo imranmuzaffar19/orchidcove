@@ -1,5 +1,3 @@
-import './style.css';
-
 /* --- STATE MANAGEMENT & DATA --- */
 let currentCurrency = 'INR';
 const EXCHANGE_RATES = { INR: 1, USD: 0.012, EUR: 0.011, GBP: 0.0094, AED: 0.044 };
