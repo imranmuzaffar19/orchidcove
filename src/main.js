@@ -8,7 +8,7 @@ const CURRENCY_SYMBOLS = { INR: '₹', USD: '$', EUR: '€', GBP: '£', AED: 'د
 const ROOMS = [
     { id: 'deluxe', name: 'Deluxe Room', category: 'deluxe', basePrice: 2800, capacity: 2, sqft: 340, view: 'Garden View', bed: 'King Bed', img: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=85&w=1200', badge: 'Popular choice', rating: 4.8 },
     { id: 'family', name: 'Family Suite', category: 'family', basePrice: 4500, capacity: 4, sqft: 520, view: 'Mountain View', bed: '2 Queen Beds', img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=85&w=1200', badge: 'Spacious', rating: 4.9 },
-    { id: 'royal', name: 'Royal Suite', category: 'royal', basePrice: 6500, capacity: 2, sqft: 680, view: 'Panoramic Dal Lake', bed: 'Super King Bed', img: '/assets/images/khatamband-royal-suite.png', badge: '🔥 2 Left Today', rating: 5.0 },
+    { id: 'royal', name: 'Royal Suite', category: 'royal', basePrice: 6500, capacity: 2, sqft: 680, view: 'Panoramic Dal Lake', bed: 'Super King Bed', img: './assets/images/khatamband-royal-suite.png', badge: '🔥 2 Left Today', rating: 5.0 },
     { id: 'villa', name: 'Heritage Villa', category: 'villa', basePrice: 9500, capacity: 6, sqft: 1100, view: 'Private Garden & Peak View', bed: '3 Luxury Bedrooms', img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=85&w=1200', badge: 'Exclusive Villa', rating: 4.9 }
 ];
 
@@ -59,12 +59,12 @@ let activeDiningFilter = 'all';
 let activeGalleryFilter = 'all';
 
 const GALLERY_ITEMS = [
-    { url: '/assets/images/resort-night-lawn.png', type: 'exterior', caption: 'Illuminated Resort Villa & Night Lawn Grounds (Exterior)' },
-    { url: '/assets/images/resort-dusk-view.png', type: 'exterior', caption: 'Dusk Vista over Lawns, Balconies & Mountain Backdrop (Exterior)' },
-    { url: '/assets/images/resort-day-exterior.png', type: 'exterior', caption: 'Daytime View of Villa Architecture & Pine Mountain Backdrop (Exterior)' },
-    { url: '/assets/images/resort-garden-lawn.png', type: 'exterior', caption: 'Front Garden Lawn & Stone Entrance Architecture (Exterior)' },
+    { url: './assets/images/resort-night-lawn.png', type: 'exterior', caption: 'Illuminated Resort Villa & Night Lawn Grounds (Exterior)' },
+    { url: './assets/images/resort-dusk-view.png', type: 'exterior', caption: 'Dusk Vista over Lawns, Balconies & Mountain Backdrop (Exterior)' },
+    { url: './assets/images/resort-day-exterior.png', type: 'exterior', caption: 'Daytime View of Villa Architecture & Pine Mountain Backdrop (Exterior)' },
+    { url: './assets/images/resort-garden-lawn.png', type: 'exterior', caption: 'Front Garden Lawn & Stone Entrance Architecture (Exterior)' },
     { url: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=85&w=1200', type: 'exterior', caption: 'Property Frontage & Zabarwan Mountain Panorama (Resort View)' },
-    { url: '/assets/images/khatamband-royal-suite.png', type: 'interior', caption: 'Royal Suite with Handcrafted Kashmiri Khatamband Wood Carved Ceiling (Interior)' },
+    { url: './assets/images/khatamband-royal-suite.png', type: 'interior', caption: 'Royal Suite with Handcrafted Kashmiri Khatamband Wood Carved Ceiling (Interior)' },
     { url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=85&w=1200', type: 'interior', caption: 'Heritage Villa Wooden Bedroom Suite Interior (Interior)' },
     { url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=85&w=1200', type: 'interior', caption: 'Family Suite Twin Bed Seating & Mountain View Balcony (Interior)' }
 ];
